@@ -18,13 +18,26 @@ public class DragObject : MonoBehaviour
     void OnMouseDown()
     {
         Debug.Log("2");
+
         Zmouse = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
         Offset = gameObject.transform.position - GetMouseWorldPos();
+        Offset.y = 0;
     }
 
     void OnMouseDrag()
     {
+        Debug.Log(GameManager.Level);
+        Debug.Log("level");
         Debug.Log("3");
         transform.position = GetMouseWorldPos() + Offset;
     }
+ /*   private void OnMouseOver()
+    {
+        gameObject.transform.localScale = new Vector3(2,2,2);
+    }
+    private void OnMouseExit()
+    {
+        gameObject.transform.localScale = new Vector3(1, 1, 1);
+    }
+ */
 }

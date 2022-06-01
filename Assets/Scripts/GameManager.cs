@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
             return _instance;
         }
     }
-    public static int level { get; private set ; }
+    public static int Level { get; private set ; }
     void Start()
     {
         
@@ -48,8 +48,8 @@ public class GameManager : MonoBehaviour
 
     public void SetLevel(int l)
     {
-        level = l;
-        Debug.Log(level);
+        Level = l;
+        Debug.Log(Level);
         LoadGame();
     }
 }
