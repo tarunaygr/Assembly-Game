@@ -4,8 +4,11 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
-
+    [SerializeField]
+    GameObject PartsPanel;
     private static UIManager _instance;
+    
+
     public static UIManager Instance
     {
         get
@@ -25,7 +28,7 @@ public class UIManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        PartsPanel.SetActive(false);
     }
 
     // Update is called once per frame
@@ -33,4 +36,16 @@ public class UIManager : MonoBehaviour
     {
         
     }
+
+    public void ToggleState(GameObject obj)
+    {
+        Animator anim;
+        obj.SetActive(!obj.activeInHierarchy);
+        anim= obj.GetComponent<Animator>();
+        if(anim!=null)
+        {
+            anim.SetBool("IsOpen", !anim.GetBool("IsOpen"));
+        }
+    }
+
 }
