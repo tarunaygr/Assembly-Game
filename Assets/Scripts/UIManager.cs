@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
-    [SerializeField]
-    GameObject PartsPanel;
+    [field: SerializeField]
+    public GameObject PartsPanel { get; private set; }
     private static UIManager _instance;
-    
+     
 
     public static UIManager Instance
     {
@@ -42,6 +42,8 @@ public class UIManager : MonoBehaviour
         Animator anim;
         obj.SetActive(!obj.activeInHierarchy);
         anim= obj.GetComponent<Animator>();
+        int level = GameManager.Level;
+        obj.transform.GetChild(level - 1).gameObject.SetActive(true);
         if(anim!=null)
         {
             anim.SetBool("IsOpen", !anim.GetBool("IsOpen"));
