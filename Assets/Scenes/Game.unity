@@ -244,8 +244,6 @@ GameObject:
   - component: {fileID: 285651003}
   - component: {fileID: 285651006}
   - component: {fileID: 285651005}
-  - component: {fileID: 285651004}
-  - component: {fileID: 285651007}
   m_Layer: 5
   m_Name: Error Score
   m_TagString: Untagged
@@ -273,18 +271,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 165, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &285651004
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 285651002}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 96c66eb7467c5db47a48c9e176ee010c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &285651005
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -382,19 +368,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 285651002}
   m_CullTransparentMesh: 1
---- !u!114 &285651007
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 285651002}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 56ab61465bca29142a611f5b86aa0278, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  errorScoreText: {fileID: 0}
 --- !u!1 &296591018 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7734731171523190171, guid: 3c25b2a6224b0614789cb4a50c5c24f2, type: 3}
