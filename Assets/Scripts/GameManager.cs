@@ -49,7 +49,6 @@ public class GameManager : MonoBehaviour
     public void SetLevel(int l)
     {
         Level = l;
-        Debug.Log(Level);
         LoadGame();
     }
 }

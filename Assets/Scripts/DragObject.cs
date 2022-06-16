@@ -6,9 +6,10 @@ public class DragObject : MonoBehaviour
 {
     private Vector3 Offset;
     private float Zmouse;
+    [SerializeField]
+    private float objectheight=12f,max_width=13,max_height=6.5f;
     private Vector3 GetMouseWorldPos()
     {
-        Debug.Log("1");
         Vector3 mousePoint = Input.mousePosition;
         mousePoint.z = Zmouse;
 
@@ -17,7 +18,6 @@ public class DragObject : MonoBehaviour
 
     void OnMouseDown()
     {
-        Debug.Log("2");
 
         Zmouse = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
         Offset = gameObject.transform.position - GetMouseWorldPos();
@@ -26,10 +26,11 @@ public class DragObject : MonoBehaviour
 
     void OnMouseDrag()
     {
-        Debug.Log(GameManager.Level);
-        Debug.Log("level");
-        Debug.Log("3");
-        transform.position = GetMouseWorldPos() + Offset;
+
+        float xclamp=Mathf.Clamp(GetMouseWorldPos().x+Offset.x,-max_height,max_height);
+        float zclamp = Mathf.Clamp(GetMouseWorldPos().z + Offset.z, -max_width, max_width);
+        transform.position = new Vector3(xclamp,objectheight,zclamp);
+
     }
  /*   private void OnMouseOver()
     {
