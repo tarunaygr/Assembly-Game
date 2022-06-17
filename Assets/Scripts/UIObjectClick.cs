@@ -5,11 +5,26 @@ using UnityEngine;
 public class UIObjectClick : MonoBehaviour
 {
     [SerializeField]
-    GameObject tospawn;
+    GameObject tospawn,penPanel=null;
     // Start is called before the first frame update
+    public void SpawnObject()
+    {
+        Instantiate(tospawn, new Vector3(0, 12, 10), Quaternion.identity);
+    }
     private void OnMouseDown()
     {
-        Instantiate(tospawn,new Vector3(0,12,10),Quaternion.identity);
-        transform.parent.gameObject.SetActive(false);
+        if(gameObject.transform.CompareTag("Level1UI"))
+        {
+            SpawnObject();
+            UIManager.Instance.PartsPanel.SetActive(false);
+        }
+        else if(gameObject.transform.CompareTag("Level2UI"))
+        {
+            transform.parent.gameObject.SetActive(false);
+            penPanel.SetActive(true);
+            UIManager.Instance.PartsPanel.SetActive(false);
+            SpawnObject();
+        }
+        
     }
 }
