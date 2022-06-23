@@ -43,7 +43,7 @@ public class UIManager : MonoBehaviour
         obj.SetActive(!obj.activeInHierarchy);
         anim= obj.GetComponent<Animator>();
         int level = GameManager.Level;
-        obj.transform.GetChild(level - 1).gameObject.SetActive(true);
+        obj.transform.GetChild((level - 1)/2).gameObject.SetActive(true);
         if(anim!=null)
         {
             anim.SetBool("IsOpen", !anim.GetBool("IsOpen"));
