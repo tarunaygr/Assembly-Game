@@ -98,6 +98,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   objectheight: 12
+  max_width: 13
+  max_height: 6.5
+  Cam: {fileID: 0}
 --- !u!65 &2686015737373838916
 BoxCollider:
   m_ObjectHideFlags: 0

@@ -7,6 +7,7 @@ TagManager:
   - Level1UI
   - Level2UI
   - Level3UI
+  - Inspect
   layers:
   - Default
   - TransparentFX

@@ -113,3 +113,4 @@ MonoBehaviour:
   objectheight: 12
   max_width: 13
   max_height: 6.5
+  Cam: {fileID: 0}
