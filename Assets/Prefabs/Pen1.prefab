@@ -220,7 +220,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Pen 1
+  m_text: 'Barrel
 
 '
   m_isRightToLeft: 0

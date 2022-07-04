@@ -154,7 +154,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Pen 2
+  m_text: 'Refill
 
 '
   m_isRightToLeft: 0
