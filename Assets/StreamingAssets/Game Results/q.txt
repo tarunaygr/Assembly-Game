@@ -1,5 +1,6 @@
 Name: q
-Age: q
+Age: 22
 Gender: Male
-Played Level: 5
-Reaction Time: 0.3979271
+
+Played Level: 1
+Reaction Time: 0.032385 seconds

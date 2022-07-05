@@ -1,5 +1,6 @@
 Name: b
-Age: b
+Age: 20
 Gender: Male
-Played Level: 1
-Reaction Time: 4.025358seconds
+
+Played Level: 5
+Reaction Time: 0.0726137 seconds

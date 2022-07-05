@@ -10,7 +10,6 @@ public class UIObjectClick : MonoBehaviour
     public void SpawnObject()
     {
         Instantiate(tospawn, new Vector3(0, 12, 10), Quaternion.identity);
-        Instantiate(tospawn, new Vector3(999, 990, 963), Quaternion.identity);
     }
     private void OnMouseDown()
     {

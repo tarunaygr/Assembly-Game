@@ -6,6 +6,7 @@ public class DragObject : MonoBehaviour
 {
     private Vector3 Offset;
     private float Zmouse;
+    private int flag;
     [SerializeField]
     private float objectheight=12f,max_width=13,max_height=6.5f;
     public Camera Cam;
@@ -15,8 +16,7 @@ public class DragObject : MonoBehaviour
     void Start()
     {
         Cam = GameObject.Find("3D View Camera").GetComponent<Camera>();
-        if (Cam != null)
-            Debug.Log(Cam.rect);
+        flag=0;
     }
     private Vector3 GetMouseWorldPos()
     {
@@ -39,7 +39,7 @@ public class DragObject : MonoBehaviour
 
         float xclamp=Mathf.Clamp(GetMouseWorldPos().x+Offset.x,-max_height,max_height);
         float zclamp = Mathf.Clamp(GetMouseWorldPos().z + Offset.z, -max_width, max_width);
-        if (Input.GetMouseButton(0) && Input.mousePosition.x < (0.75 * Screen.width) && Input.mousePosition.y > (0.25 * Screen.height))
+        if (Input.GetMouseButton(0) && !(Input.mousePosition.x > (0.75 * Screen.width) && Input.mousePosition.y < (0.25 * Screen.height)) && flag == 0)
         {
             transform.position = new Vector3(xclamp, objectheight, zclamp);
             Cam.transform.position = new Vector3(xclamp, Cam.transform.position.y, zclamp);
@@ -48,12 +48,18 @@ public class DragObject : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetMouseButton(0) && Input.mousePosition.x > (Cam.rect.x * Screen.width) && Input.mousePosition.y < ((1-Cam.rect.y) * Screen.height))
+        if (Input.GetMouseButton(0) && Input.mousePosition.x > (0.75 * Screen.width) && Input.mousePosition.y < (0.25 * Screen.height))
         {
+            flag = 1;
             PosDelta = Input.mousePosition - prevPos;
 
             transform.Rotate(transform.right, -Vector3.Dot(PosDelta, Camera.main.transform.up), Space.World);
 
+        }
+        else
+        {
+            transform.rotation = Quaternion.identity;
+            
         }
         prevPos = Input.mousePosition;
     }
@@ -62,10 +68,13 @@ public class DragObject : MonoBehaviour
            gameObject.transform.localScale = new Vector3(2,2,2);
        }
     */
-       private void OnMouseExit()
-       {
-           transform.rotation = Quaternion.identity;
-       }
+    private void OnMouseExit()
+    {
+        
+            flag = 0;
+       
+    }
     
-   
+
+
 }
