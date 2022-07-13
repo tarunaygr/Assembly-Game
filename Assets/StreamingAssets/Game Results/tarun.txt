@@ -1,0 +1,6 @@
+Name: tarun
+Age: 22
+Gender: Male
+
+Played Level: 5
+Reaction Time: 0.1737196 seconds
