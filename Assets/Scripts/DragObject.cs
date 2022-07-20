@@ -12,7 +12,8 @@ public class DragObject : MonoBehaviour
     public Camera Cam;
     Vector3 prevPos = Vector3.zero;
     Vector3 PosDelta = Vector3.zero;
-
+    float xclamp;
+    float zclamp;
     void Start()
     {
         Cam = GameObject.Find("3D View Camera").GetComponent<Camera>();
@@ -37,12 +38,23 @@ public class DragObject : MonoBehaviour
     void OnMouseDrag()
     {
 
-        float xclamp=Mathf.Clamp(GetMouseWorldPos().x+Offset.x,-max_height,max_height);
-        float zclamp = Mathf.Clamp(GetMouseWorldPos().z + Offset.z, -max_width, max_width);
+        xclamp=Mathf.Clamp(GetMouseWorldPos().x+Offset.x,-max_height,max_height);
+        zclamp = Mathf.Clamp(GetMouseWorldPos().z + Offset.z, -max_width, max_width);
         if (Input.GetMouseButton(0) && !(Input.mousePosition.x > (0.75 * Screen.width) && Input.mousePosition.y < (0.25 * Screen.height)) && flag == 0)
         {
             transform.position = new Vector3(xclamp, objectheight, zclamp);
             Cam.transform.position = new Vector3(xclamp, Cam.transform.position.y, zclamp);
+        }
+
+        else if (Input.GetMouseButton(0) && Input.mousePosition.x > (0.75 * Screen.width) && Input.mousePosition.y < (0.25 * Screen.height))
+        {
+            transform.Rotate(transform.right, -Vector3.Dot(PosDelta, Camera.main.transform.up), Space.World);
+        }
+
+        else
+        {
+            transform.rotation = Quaternion.identity;
+
         }
 
     }
@@ -52,9 +64,6 @@ public class DragObject : MonoBehaviour
         {
             flag = 1;
             PosDelta = Input.mousePosition - prevPos;
-
-            transform.Rotate(transform.right, -Vector3.Dot(PosDelta, Camera.main.transform.up), Space.World);
-
         }
         else
         {
@@ -72,9 +81,16 @@ public class DragObject : MonoBehaviour
     {
         
             flag = 0;
-       
+        StopAllCoroutines();
     }
     
+    private void OnMouseClick()
+    {
+        xclamp = Mathf.Clamp(GetMouseWorldPos().x + Offset.x, -max_height, max_height);
+        zclamp = Mathf.Clamp(GetMouseWorldPos().z + Offset.z, -max_width, max_width);
+
+        Cam.transform.position = new Vector3(xclamp, Cam.transform.position.y, zclamp);
+    }
 
 
 }

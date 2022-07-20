@@ -76,6 +76,7 @@ public class UIManager : MonoBehaviour
             timer_text.text = "Times Up!!";
             timer_text.color = Color.red;
             enabled = false;                                // It disables the script automatically.
+            GameManager.Instance.survey();
         }
         else
         {

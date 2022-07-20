@@ -23,6 +23,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private bool moved;
     private List<int> LevelsToChoose=new List<int>() { 1,2,3,4,5};
+    [SerializeField]
+    private GameObject Canvas, Survey;
+    private int NoChild, i;
 
 
     public static GameManager Instance
@@ -148,5 +151,19 @@ public class GameManager : MonoBehaviour
         reactionTime = 0;
         File.AppendAllText(filename, "Errors Made: " + error_score.ToString() + "\n");
         SetLevel();
+    }
+
+    public void survey()
+    {
+        Canvas = GameObject.Find("Canvas");
+        Survey = Canvas.transform.GetChild(0).gameObject;
+        NoChild = Canvas.transform.childCount;
+
+        for(i=0;i<NoChild;i++)
+        {
+            Canvas.transform.GetChild(i).gameObject.SetActive(false);
+        }
+
+        Survey.gameObject.SetActive(true);
     }
 }
