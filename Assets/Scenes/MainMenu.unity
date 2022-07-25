@@ -2150,6 +2150,10 @@ MonoBehaviour:
   age: {fileID: 883261147}
   Name: {fileID: 238188623}
   gender: {fileID: 194980465}
+  reactionTime: 0
+  moved: 0
+  Canvas: {fileID: 0}
+  Survey: {fileID: 0}
 --- !u!4 &378734956
 Transform:
   m_ObjectHideFlags: 0

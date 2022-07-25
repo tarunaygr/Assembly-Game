@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     private TMP_InputField age, Name;
     [SerializeField]
     private TMP_Dropdown gender;
-    string filename;
+    string filename = Application.streamingAssetsPath + "/User Data/" + "Game Results.csv";
     int error_score;
     [SerializeField]
     float reactionTime = 0f;
@@ -26,8 +26,8 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private GameObject Canvas, Survey;
     private int NoChild, i;
-
-
+    private bool file_open_mode;
+    TextWriter tw;
     public static GameManager Instance
     {
         get
@@ -63,9 +63,23 @@ public class GameManager : MonoBehaviour
     }
     void Start()
     {
-        CreateFile();
+        if(File.Exists(filename))
+        {
+            Debug.Log("FILE FOUND");
+            file_open_mode = true;
+            tw = new StreamWriter(filename, true);
+        }
+        else
+        {
+            file_open_mode = false;
+            tw = new StreamWriter(filename, false);
+            tw.WriteLine("Name, Age, Gender, FirstLevel, Reaction Time, Mental, Physical, Temporal, Performance, Effort, Frustration, Errors, Second Level, Reaction Time, Mental, Physical, Temporal, Performance, Effort, Frustration, Errors, Third Level, Reaction Time, Mental, Physical, Temporal, Performance, Effort, Frustration, Errors, Fourth Level, Reaction Time, Mental, Physical, Temporal, Performance, Effort, Frustration, Errors, Fifth Level, Reaction Time, Mental, Physical, Temporal, Performance, Effort, Frustration, Errors");
+        }
+            
+
+        //CreateFile();
         
-      //  Debug.Log(SceneManager.GetActiveScene().name);
+        //  Debug.Log(SceneManager.GetActiveScene().name);
     }
 
     // Update is called once per frame
@@ -85,7 +99,9 @@ public class GameManager : MonoBehaviour
             {
                 moved=true;
                 Debug.Log(reactionTime);
-                File.AppendAllText(filename, "Reaction Time: " + reactionTime.ToString() + " seconds\n");
+                // File.AppendAllText(filename, "Reaction Time: " + reactionTime.ToString() + " seconds\n");
+                tw.Write("," + reactionTime);
+               // tw.Close();
             }
             if(Input.GetKeyDown(KeyCode.N))
             {
@@ -111,24 +127,36 @@ public class GameManager : MonoBehaviour
 
     public void SetLevel()
     {
+        if(LevelsToChoose.Count<=0)
+        {
+            Debug.Log("GAME OVER");
+            tw.WriteLine();
+            tw.Close();
+            return;
+        }
         int nextIndex=Random.Range(0, LevelsToChoose.Count);
         int nextLevel=LevelsToChoose[nextIndex];
         Level = nextLevel;
         LevelsToChoose.RemoveAt(nextIndex);
-        File.AppendAllText(filename, "\nPlayed Level: " + GameManager.Level.ToString() + "\n");
+        tw.Write("," + Level);
+      //  File.AppendAllText(filename, "\nPlayed Level: " + GameManager.Level.ToString() + "\n");
         LoadGame();
     }
     public void CreateFile()
     {
-        Directory.CreateDirectory(Application.streamingAssetsPath + "/Game Results");
+        Directory.CreateDirectory(Application.streamingAssetsPath + "/User Data");
     }
     public void SaveInitialData()
     {
-        filename = Application.streamingAssetsPath + "/Game Results/" + Name.text + ".txt";
-        File.WriteAllText(filename, "Name: " + Name.text + "\n");
-        File.AppendAllText(filename, "Age: " + age.text + "\n");
-        File.AppendAllText(filename, "Gender: " + gender.options[gender.value].text + "\n");
         
+        
+        tw.Write(Name.text + "," + age.text );
+        tw.Write("," + gender.options[gender.value].text);
+        Debug.Log("WRITTEN");
+     /*   File.WriteAllText(filename, "Name: " + Name.text + "\n");
+        File.AppendAllText(filename, "Age: " + age.text + "\n");
+        File.AppendAllText(filename, "Gender: " + gender.options[gender.value].text + "\n");*/
+
     }
     public void MadeError()
     {
@@ -149,7 +177,8 @@ public class GameManager : MonoBehaviour
     {
         //Add code to store the rest of the stats here
         reactionTime = 0;
-        File.AppendAllText(filename, "Errors Made: " + error_score.ToString() + "\n");
+        //   File.AppendAllText(filename, "Errors Made: " + error_score.ToString() + "\n");
+        tw.Write("," + error_score);
         SetLevel();
     }
 
@@ -165,5 +194,9 @@ public class GameManager : MonoBehaviour
         }
 
         Survey.gameObject.SetActive(true);
+    }
+    public void SurveyDataStore(int mental, int physical, int temporal, int perf, int effort, int frustration)
+    {
+        tw.Write("," + mental+ ","  + physical + "," + temporal + "," + perf + "," + effort + "," + frustration);
     }
 }
