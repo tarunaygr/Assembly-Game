@@ -2891,7 +2891,7 @@ MonoBehaviour:
   error_text: {fileID: 1571872215}
   level_text: {fileID: 1400378345}
   timer_text: {fileID: 1317566407}
-  currentTime: 3
+  currentTime: 900
   countDown: 1
   hasLimit: 1
   timerLimit: 0
@@ -8587,7 +8587,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timerText: {fileID: 1317566407}
-  currentTime: 30
+  currentTime: 5
   countDown: 1
   hasLimit: 1
   timerLimit: 0

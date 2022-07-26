@@ -86,7 +86,10 @@ public class UIManager : MonoBehaviour
     }
     private void UpdateTimerText()
     {
-        timer_text.text = "Time Left : " + currentTime.ToString("0");
+        int min = ((int)currentTime / 60);
+        float seconds = (currentTime % 60);
+        // timer_text.text = "Time Left : " + currentTime.ToString("0");
+        timer_text.text = "Time Left  " + min.ToString("0") + ":" + seconds.ToString("0");
     }
     private void UpdateLevelText()
     {

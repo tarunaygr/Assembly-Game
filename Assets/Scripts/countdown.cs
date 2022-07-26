@@ -9,7 +9,7 @@ public class countdown : MonoBehaviour
     public TextMeshProUGUI timerText;
 
     [Header("Timer Settings")]
-    public float currentTime;
+    public float currentTime = 5;
     public bool countDown;
 
     [Header("Limit Setting")]
@@ -17,6 +17,7 @@ public class countdown : MonoBehaviour
     public float timerLimit;
     void Update()
     {
+        Debug.Log(currentTime);
         currentTime = countDown ? currentTime -=  Time.deltaTime : currentTime += Time.deltaTime;
 
         if (hasLimit && (countDown && (currentTime <= timerLimit) || (!countDown && currentTime >= timerLimit)))
