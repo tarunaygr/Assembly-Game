@@ -57,6 +57,9 @@ public class DragObject : MonoBehaviour
 
         }
 
+        if (Input.GetMouseButton(0) && Input.mousePosition.x < (0.15 * Screen.width) && Input.mousePosition.x > (0.10 * Screen.width) && Input.mousePosition.y < (0.15 * Screen.height) && Input.mousePosition.y > (0.10 * Screen.height) && flag==0)
+            Destroy(gameObject);
+
     }
     void Update()
     {
@@ -74,7 +77,8 @@ public class DragObject : MonoBehaviour
     }
     /*   private void OnMouseOver()
        {
-           gameObject.transform.localScale = new Vector3(2,2,2);
+           if (Input.GetMouseButton(0) && Input.mousePosition.x < (0.25 * Screen.width) && Input.mousePosition.y < (0.25 * Screen.height))
+            Destroy(gameObject);
        }
     */
     private void OnMouseExit()
@@ -82,8 +86,15 @@ public class DragObject : MonoBehaviour
         
             flag = 0;
         StopAllCoroutines();
+        
     }
-    
+
+    /*private void OnMouseUp()
+    {
+        if (Input.GetMouseButton(0) && Input.mousePosition.x < (0.25 * Screen.width) && Input.mousePosition.y < (0.25 * Screen.height))
+            Destroy(gameObject);
+    }
+    */
     private void OnMouseClick()
     {
         xclamp = Mathf.Clamp(GetMouseWorldPos().x + Offset.x, -max_height, max_height);
