@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     private static GameManager _instance;
     [SerializeField]
     private bool moved;
-    private List<int> LevelsToChoose=new List<int>() { 1,2,3,4,5};
+    private List<int> LevelsToChoose=new List<int>() { 2,3,5};
     [SerializeField]
     private GameObject Canvas, Survey;
     private int NoChild, i;
@@ -132,6 +132,7 @@ public class GameManager : MonoBehaviour
             Debug.Log("GAME OVER");
             tw.WriteLine();
             tw.Close();
+            Application.Quit();
             return;
         }
         int nextIndex=Random.Range(0, LevelsToChoose.Count);

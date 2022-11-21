@@ -66,9 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Part 2
-
-'
+  m_text: Spring 1
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -95,8 +93,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 26.5
-  m_fontSizeBase: 26.5
+  m_fontSize: 22
+  m_fontSizeBase: 22
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -296,5 +294,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dc3920e5988816747890e39efef41f6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tospawn: {fileID: 4678858383763967541, guid: 48a177dba5fc05c4c8a0c9a504ce6245, type: 3}
+  tospawn: {fileID: 7702583293512952470, guid: 69cf850d37535df4a9b63199af755998, type: 3}
   penPanel: {fileID: 0}
