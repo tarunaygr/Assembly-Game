@@ -14,10 +14,16 @@ public class DragObject : MonoBehaviour
     Vector3 PosDelta = Vector3.zero;
     float xclamp;
     float zclamp;
+
+    public GameObject snappoints;
+    private float snapsensitivity = 1.0f; 
+
+
     void Start()
     {
         Cam = GameObject.Find("3D View Camera").GetComponent<Camera>();
         flag=0;
+        snappoints = GameObject.Find("SnappointTest");
     }
     private Vector3 GetMouseWorldPos()
     {
@@ -44,6 +50,12 @@ public class DragObject : MonoBehaviour
         {
             transform.position = new Vector3(xclamp, objectheight, zclamp);
             Cam.transform.position = new Vector3(xclamp, Cam.transform.position.y, zclamp);
+            for(int i = 0; i < snappoints.transform.childCount; i++)
+            if (Vector3.Distance(transform.position, snappoints.transform.GetChild(i).position) <= snapsensitivity)
+            {
+                transform.position = snappoints.transform.GetChild(i).position;
+                Debug.Log("object snapped");
+            }
         }
 
         else if (Input.GetMouseButton(0) && Input.mousePosition.x > (0.75 * Screen.width) && Input.mousePosition.y < (0.25 * Screen.height))
@@ -103,5 +115,10 @@ public class DragObject : MonoBehaviour
         Cam.transform.position = new Vector3(xclamp, Cam.transform.position.y, zclamp);
     }
 
+    private void OnMouseUp()
+    {
+
+        
+    }
 
 }
